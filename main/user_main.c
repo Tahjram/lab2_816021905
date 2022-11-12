@@ -30,7 +30,7 @@ static const char *TAG = "main";
 #define GPIO_OUTPUT_IO      2               //Define output pin
 
 
-static void gpio_level(void *arg)
+static void gpio_level(void *arg)           //GPIO task to report Level
 {
     
 
@@ -40,44 +40,44 @@ static void gpio_level(void *arg)
     }
 }
 
-static void gpio_ON(void*arg)
+static void gpio_ON(void*arg)               //GPIO task to pull pin high
 {
     while(1)
     {
         ESP_LOGI(TAG,"Trying high\n");
 
-        xSemaphoreTake(xMutex,portMAX_DELAY);
+        xSemaphoreTake(xMutex,portMAX_DELAY);   //Taking Mutex
 
-        taskENTER_CRITICAL();
+        taskENTER_CRITICAL();                   //Entering critical section to avoid interruptions from higher priority tasks
 
-        gpio_set_level(GPIO_OUTPUT_IO,1);
+        gpio_set_level(GPIO_OUTPUT_IO,1);   
         ESP_LOGI(TAG,"GPIO set High\n");
 
         for(uint32_t i=0;i<6500000;i++);
 
-        taskEXIT_CRITICAL();
+        taskEXIT_CRITICAL();                    //Exiting critical section
 
         xSemaphoreGive(xMutex);
         vTaskDelay(1000/ portTICK_PERIOD_MS);
     }
 }
 
-static void gpio_OFF(void*arg)
+static void gpio_OFF(void*arg)                  //GPIO task to pull pin low
 {
     while(1)
     {
         ESP_LOGI(TAG,"Trying low");
 
-        xSemaphoreTake(xMutex,portMAX_DELAY);
+        xSemaphoreTake(xMutex,portMAX_DELAY);   //Taking Mutex
 
-        taskENTER_CRITICAL();
+        taskENTER_CRITICAL();                   //Entering critical section to avoid interruptions from higher priority tasks
 
         gpio_set_level(GPIO_OUTPUT_IO,0);
         ESP_LOGI(TAG,"GPIO set Low\n");
 
         for(uint32_t i=0;i<6500000;i++);
 
-        taskEXIT_CRITICAL();
+        taskEXIT_CRITICAL();                    //Exiting critical section
 
         xSemaphoreGive(xMutex);
         vTaskDelay(1000/ portTICK_PERIOD_MS);
@@ -100,13 +100,13 @@ void app_main(void)
     //configure GPIO with the given settings
     gpio_config(&io_conf);
 
-    xMutex = xSemaphoreCreateMutex();
+    xMutex = xSemaphoreCreateMutex();                               //Create Mutex
     if(xMutex!=NULL){
         ESP_LOGI(TAG,"Mutex Created\n");
     }
 
     //start gpio tasks
-    xTaskCreate(gpio_ON,"gpio_ON",2048,NULL,1,NULL);
+    xTaskCreate(gpio_ON,"gpio_ON",2048,NULL,1,NULL);                //Creating tasks with set priority
     xTaskCreate(gpio_OFF,"gpio_OFF",2048,NULL,3,NULL);
     xTaskCreate(gpio_level, "gpio_level", 2048, NULL, 2, NULL);
 
