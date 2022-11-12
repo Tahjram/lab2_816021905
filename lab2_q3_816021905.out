@@ -23,14 +23,14 @@ I (86) boot:  0 nvs              WiFi data        01 02 00009000 00006000
 I (98) boot:  1 phy_init         RF data          01 01 0000f000 00001000
 I (109) boot:  2 factory          factory app      00 00 00010000 000f0000
 I (121) boot: End of partition table
-I (127) esp_image: segment 0: paddr=0x00010010 vaddr=0x40210010 size=0x15e30 ( 89648) map
-I (171) esp_image: segment 1: paddr=0x00025e48 vaddr=0x40225e40 size=0x05990 ( 22928) map
-I (179) esp_image: segment 2: paddr=0x0002b7e0 vaddr=0x3ffe8000 size=0x003dc (   988) load
-I (182) esp_image: segment 3: paddr=0x0002bbc4 vaddr=0x40100000 size=0x00080 (   128) load
-I (196) esp_image: segment 4: paddr=0x0002bc4c vaddr=0x40100080 size=0x04558 ( 17752) load
+I (127) esp_image: segment 0: paddr=0x00010010 vaddr=0x40210010 size=0x15e48 ( 89672) map
+I (171) esp_image: segment 1: paddr=0x00025e60 vaddr=0x40225e58 size=0x059a0 ( 22944) map
+I (179) esp_image: segment 2: paddr=0x0002b808 vaddr=0x3ffe8000 size=0x003dc (   988) load
+I (182) esp_image: segment 3: paddr=0x0002bbec vaddr=0x40100000 size=0x00080 (   128) load
+I (196) esp_image: segment 4: paddr=0x0002bc74 vaddr=0x40100080 size=0x04558 ( 17752) load
 I (215) boot: Loaded app from partition at offset 0x10000
 I (234) gpio: GPIO[2]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0
-I (238) main: Mutex Created
+I (237) main: Mutex Created
 
 I (240) main: Trying high
 I (245) main: GPIO set High
@@ -38,12 +38,12 @@ I (245) main: GPIO set High
 I (748) main: GPIO Level: 1
 
 I (749) main: Trying low
-I (751) main: GPIO set Low
+I (750) main: GPIO set Low
 
 I (1748) main: GPIO Level: 0
 
 I (1749) main: Trying high
-I (1751) main: GPIO set High
+I (1750) main: GPIO set High
 
 I (2248) main: Trying low
 I (2249) main: GPIO set Low
@@ -56,12 +56,12 @@ I (3249) main: GPIO set High
 I (3748) main: GPIO Level: 1
 
 I (3749) main: Trying low
-I (3751) main: GPIO set Low
+I (3750) main: GPIO set Low
 
 I (4748) main: GPIO Level: 0
 
 I (4749) main: Trying high
-I (4751) main: GPIO set High
+I (4750) main: GPIO set High
 
 I (5248) main: Trying low
 I (5249) main: GPIO set Low
@@ -74,12 +74,12 @@ I (6249) main: GPIO set High
 I (6748) main: GPIO Level: 1
 
 I (6749) main: Trying low
-I (6751) main: GPIO set Low
+I (6750) main: GPIO set Low
 
 I (7749) main: GPIO Level: 0
 
 I (7750) main: Trying high
-I (7752) main: GPIO set High
+I (7751) main: GPIO set High
 
 I (8249) main: Trying low
 I (8250) main: GPIO set Low
@@ -92,15 +92,5 @@ I (9250) main: GPIO set High
 I (9749) main: GPIO Level: 1
 
 I (9750) main: Trying low
-I (9752) main: GPIO set Low
-
-I (10749) main: GPIO Level: 0
-
-I (10750) main: Trying high
-I (10752) main: GPIO set High
-
-I (11249) main: Trying low
-I (11250) main: GPIO set Low
-
-I (11749) main: GPIO Level: 0
+I (9751) main: GPIO set Low
 

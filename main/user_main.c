@@ -30,7 +30,7 @@ static const char *TAG = "main";
 #define GPIO_OUTPUT_IO      2                               //Define output pin
 
 
-static void wait_for_ms (uint32_t delay)
+static void wait_for_ms (uint32_t delay)                    //Wait function
 {
     uint32_t duration = delay/portTICK_RATE_MS;
     uint32_t begin = xTaskGetTickCount();
@@ -42,7 +42,7 @@ static void wait_for_ms (uint32_t delay)
     
 }
 
-static void gpio_level(void *arg)
+static void gpio_level(void *arg)                       //GPIO task to report pin level
 {
     
 
@@ -52,7 +52,7 @@ static void gpio_level(void *arg)
     }
 }
 
-static void gpio_ON(void*arg)
+static void gpio_ON(void*arg)                           //GPIO task to pull pin high
 {
     while(1)
     {
@@ -66,7 +66,7 @@ static void gpio_ON(void*arg)
     }
 }
 
-static void gpio_OFF(void*arg)
+static void gpio_OFF(void*arg)                          //GPIO task to pull pin low
 {
     while(1)
     {
@@ -80,7 +80,7 @@ static void gpio_OFF(void*arg)
     }
 }
 
-void vApplicationIdleHook(void)
+void vApplicationIdleHook(void)                         //Idle hook function
 {                            
     ESP_LOGI(TAG,"Entering IDLE");
 }
@@ -101,13 +101,13 @@ void app_main(void)
     //configure GPIO with the given settings
     gpio_config(&io_conf);
 
-    xMutex = xSemaphoreCreateMutex();
+    xMutex = xSemaphoreCreateMutex();                   //Creating Mutex and checking for success
     if(xMutex!=NULL){
         ESP_LOGI(TAG,"Mutex Created\n");
     }
 
     //start gpio tasks
-    xTaskCreate(gpio_ON,"gpio_ON",2048,NULL,2,NULL);
+    xTaskCreate(gpio_ON,"gpio_ON",2048,NULL,2,NULL);                //Creating tasks with set priorities
     xTaskCreate(gpio_OFF,"gpio_OFF",2048,NULL,1,NULL);
     xTaskCreate(gpio_level, "gpio_level", 2048, NULL, 3, NULL);
 
